@@ -32,20 +32,32 @@ function getRandomQuote($quotes){
 
 
 // Create the printQuote funtion and name it printQuote
-function printQuote($quotes) {
+function printQuote($quotes){
+    $quote_div = '';
     $quote     = getRandomQuote($quotes);
     $quote_str = $quote["quote"];
     $source    = $quote["source"];
     $citation  = $quote["citation"];
     $year      = $quote["year"];
 
-$quote_div = <<<END
-<div id="quote-box">
-    <p class="quote">$quote_str</p>
-    <p class="source">$source<span class="citation">$citation</span><span class="year">$year</span></p>
-</div>
+    if(!isset($citation) || !isset($year)){
+        $quote_div = <<<END
+            <div id="quote-box">
+                <p class="quote">$quote_str</p>
+                <p class="source">$source</p>
+            </div>      
 END;
-
+    } else {
+        $quote_div = <<<END
+            <div id="quote-box">
+                <p class="quote">$quote_str</p>
+                <p class="source">$source
+                    <span class="citation">$citation</span>
+                    <span class="year">$year</span>
+                444</p>
+            </div>
+END;
+}
     return $quote_div;
 }
 ?>
